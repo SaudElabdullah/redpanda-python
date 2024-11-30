@@ -1,0 +1,15 @@
+version: '3.8'
+networks:
+  redpanda_redpanda_network:
+    external: true
+
+services:
+  consumer:
+    build:
+      context: ./  # Build the image from the current directory
+      dockerfile: ./DockerFile
+    volumes:
+      - .:/consumer  # Mount the current directory into the container (optional for development)
+    command: python -u ./consumer/main.py # Command to run the consumer script
+    networks:
+      - redpanda_redpanda_network

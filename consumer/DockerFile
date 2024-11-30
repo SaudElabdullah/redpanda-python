@@ -1,0 +1,17 @@
+# Use a lightweight Python image as the base
+FROM python:3.9
+
+# Set the working directory inside the container
+WORKDIR /
+
+# Copy the requirements file
+COPY requirements.txt .
+
+# Install the dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copy the consumer script into the container
+COPY . ./consumer
+
+# Set the default command to run the consumer script
+CMD ["python", "-u", "./consumer/main.py"]

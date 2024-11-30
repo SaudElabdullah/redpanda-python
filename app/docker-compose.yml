@@ -1,0 +1,17 @@
+version: '3.8'
+networks:
+  redpanda_redpanda_network:
+    external: true
+
+services:
+  app:
+    build:
+      context: ./  # Build the image from the current directory
+      dockerfile: ./DockerFile
+    ports:
+      - "8000:8000"  # Map container's port 8000 to host's port 8000
+    volumes:
+      - .:/app  # Mount the current directory into the container (optional)
+    command: uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload  # Command to run the app
+    networks:
+      - redpanda_redpanda_network

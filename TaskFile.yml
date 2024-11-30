@@ -1,0 +1,20 @@
+version: 3
+
+tasks:
+  up:
+    desc: "Run the application"
+    summary: |
+      This task will run the application
+    cmds:
+      - ./redpanda/up.sh
+      - ./app/up.sh
+      - ./consumer/up.sh
+
+  down:
+    desc: "Down the application"
+    summary: |
+      This task will down the application
+    cmds:
+      - ./redpanda/down.sh
+      - ./app/down.sh
+      - ./consumer/down.sh
